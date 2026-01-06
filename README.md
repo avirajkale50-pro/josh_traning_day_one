@@ -36,7 +36,7 @@
 ---
 # Assignment Two 
 # ER diagram for multi-user blog site
-![Alt text for the image](Screenshot from 2026-01-06 14-42-42.png)
+![Alt text for the image](./Screenshot%20from%202026-01-06%2014-42-42.png)
 
 
 # Assignment Three
