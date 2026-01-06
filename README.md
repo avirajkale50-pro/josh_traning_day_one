@@ -34,6 +34,9 @@
 - Works well because rider locations and other data need to be updated in real time  
 
 ---
+# Assignment Two 
+# ER diagram for multi-user blog site
+![Alt text for the image](Screenshot from 2026-01-06 14-42-42.png)
 
 
 # Assignment Three
