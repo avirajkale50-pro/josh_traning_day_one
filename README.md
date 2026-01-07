@@ -93,3 +93,63 @@ So, the table in **1NF** will look like this:
 
 *(Considering `Order_ID` as the primary key, it is kept unique.)*
 
+
+
+# Session two Assignment One
+
+# Database Indexing – Orders Table
+
+## Given Table
+
+**orders**
+
+| id | user_id | status | created_at |
+|----|---------|--------|------------|
+
+## Suggest appropriate indexes  
+## Explain why you chose them
+
+**Answer:**
+
+There can be multiple indexes we can create according to the needs of our application and the queries we are using. Since the queries are not mentioned here, I am assuming common scenarios and suggesting indexes based on that.
+
+The indexes we can create are:
+
+---
+
+### 1. Primary Key Index on `id`
+
+On this, I will create a **primary key index**, which is a **B-tree index**.
+
+**Reasons:**
+
+- `id` uniquely identifies an order.
+- Makes queries faster that include `WHERE id = ?`.
+- Required for efficient joins.
+
+---
+
+### 2. Index on `user_id`
+
+On this, we can also create a **B-tree index**.
+
+**Example:**
+```sql
+CREATE INDEX idx_orders_user_id ON orders (user_id);
+```
+**Reasons:**
+
+* Systems frequently search orders by user, so this makes those queries faster.
+* Users need to review their orders, and in that case, we fetch order data using `user_id`.
+
+---
+
+### 3. Composite Index on `(status, created_at)`
+
+On this, we can create a **composite index**.
+
+**Reasons:**
+
+* Users often check when they ordered something along with the current status of the order at the same time.
+* Works well for pagination or recent-orders views.
+* It checks only the required rows, so the user experience becomes much smoother when users review their orders.

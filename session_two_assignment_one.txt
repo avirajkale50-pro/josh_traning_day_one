@@ -1,0 +1,33 @@
+Given the table:
+orders
+
+id |  user_id  | status | created_at
+
+Suggest appropriate indexes.
+Explain why you chose them?
+Answer: 
+There can be multiple index we can create according two need of our application and the query we are using but the query are not mention here so I am assuming common scenarios and suggest the index based on that, the index we can create are like :
+1. Primary Key(id) on this I will create primary key index which is a b tree index
+Reasons : 
+	a. `id` uniquely identifies an order
+	b. Make query faster which include `WHERE id = ?`
+	c. Required for efficient joins.
+	
+2. Index on `user_id` on this also we have to create b tree index 
+We can create it like : 
+ 	CREATE INDEX idx_orders_user_id ON orders (user_id);
+Reasons : 
+	a. any system frequently search for the user so to make it faster.
+	b. user need to review there orders so in that query as well we have to find the order data with user id.
+
+3. (status, created_at) on this we can create composite index
+Reasons:
+	a. As the user often check when they order something and the current status of the order at same time
+	b. It works good for pagination or recent-orders views
+	c. It will only check for that row so the user experience will much more smoother while user review there order
+
+
+
+
+
+
