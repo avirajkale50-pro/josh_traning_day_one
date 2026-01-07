@@ -153,3 +153,29 @@ On this, we can create a **composite index**.
 * Users often check when they ordered something along with the current status of the order at the same time.
 * Works well for pagination or recent-orders views.
 * It checks only the required rows, so the user experience becomes much smoother when users review their orders.
+
+
+Here is your answer **cleanly converted and well-formatted**, without adding extra content, suitable for notes or a README:
+
+---
+
+# Session two Assignment Two
+
+## Real-World Systems Using Soft and Hard Deletes
+
+### Soft Deletes Required – Healthcare Management System
+
+* Patient records cannot be permanently removed due to legal and regulatory requirements
+* Medical history must be preserved for future treatments
+* Records may need to be restored if deleted by mistake
+* Data is usually marked using a `deleted_at` flag instead of being permanently removed
+
+---
+
+### Hard Deletes Preferred – OTP / Online Meeting Chats
+
+* OTPs and meeting chats are temporary and time-bound
+* Old OTP data is not needed, and meeting notes are already stored separately
+* Permanently deleting data reduces security risks, as chats may contain sensitive company information
+
+---

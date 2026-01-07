@@ -1,0 +1,14 @@
+Describe a real-world system where:
+Soft deletes are required.
+Hard deletes are preferred.
+Answer : 
+Soft Deletes Required – Healthcare Management System
+    a.Patient records cannot be permanently removed due to legal and regulatory requirements system
+    b.Medical history must be preserved for future treatments 
+    c.Records may need to be restored if deleted by mistake
+    d.Data is usually marked as `deleted_at` instead of deleting permanently
+
+Hard Deletes Preferred – OTP / Online Meeting Chats
+    a.OTP and meetings are temporary and time-bound
+    b.Old data of OTP are not need and also the meeting notes is there so the chats are not necessary 
+    c.Reduces security risks by not retaining sensitive data as chats can contain sensitive information about company
