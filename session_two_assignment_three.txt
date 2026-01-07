@@ -1,0 +1,15 @@
+A query frequently runs:
+
+SELECT * FROM bookings
+WHERE doctor_id = ?
+AND appointment_date >= ?
+AND appointment_date <= ?;
+
+Propose a composite index, Explain column order choice.
+Answer :
+We can create a composite index on (doctor_id,appointment_date).
+Reasons : 
+    1.The doctor_id is involve in the WHERE condition with '=' sign, so if we include the index on the doctor id it can narrow down the scope of search which result in faster query execution
+    2.Now appointment_date is in the query to check for range '>=' and '<=', so we include the appointment_date in the index
+Why Order is important in composite index: 
+Range of appointment_date will be more compare to the doctor_id so if we include doctor_id first and then appointment_date it will narrow down search with doctor_id first and then choose element in that range

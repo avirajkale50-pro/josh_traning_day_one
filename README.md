@@ -117,11 +117,11 @@ The indexes we can create are:
 
 ---
 
-### 1. Primary Key Index on `id`
+## 1. Primary Key Index on `id`
 
 On this, I will create a **primary key index**, which is a **B-tree index**.
 
-**Reasons:**
+### **Reasons:**
 
 - `id` uniquely identifies an order.
 - Makes queries faster that include `WHERE id = ?`.
@@ -129,7 +129,7 @@ On this, I will create a **primary key index**, which is a **B-tree index**.
 
 ---
 
-### 2. Index on `user_id`
+## 2. Index on `user_id`
 
 On this, we can also create a **B-tree index**.
 
@@ -137,18 +137,18 @@ On this, we can also create a **B-tree index**.
 ```sql
 CREATE INDEX idx_orders_user_id ON orders (user_id);
 ```
-**Reasons:**
+### **Reasons:**
 
 * Systems frequently search orders by user, so this makes those queries faster.
 * Users need to review their orders, and in that case, we fetch order data using `user_id`.
 
 ---
 
-### 3. Composite Index on `(status, created_at)`
+## 3. Composite Index on `(status, created_at)`
 
 On this, we can create a **composite index**.
 
-**Reasons:**
+### **Reasons:**
 
 * Users often check when they ordered something along with the current status of the order at the same time.
 * Works well for pagination or recent-orders views.
@@ -179,3 +179,31 @@ Here is your answer **cleanly converted and well-formatted**, without adding ext
 * Permanently deleting data reduces security risks, as chats may contain sensitive company information
 
 ---
+
+# Session two Assignment Three
+
+## **Question:**
+
+A query frequently runs:
+
+```sql
+SELECT * FROM bookings
+WHERE doctor_id = ?
+AND appointment_date >= ?
+AND appointment_date <= ?;
+```
+
+Propose a composite index and explain the column order choice.
+
+## **Answer:**
+
+We can create a composite index on **(doctor_id, appointment_date)**.
+
+### **Reasons:**
+
+1. `doctor_id` is used in the `WHERE` clause with the `=` operator. Placing it first in the index helps narrow down the search to a specific doctor, resulting in faster query execution.
+2. `appointment_date` is used with range conditions (`>=` and `<=`). Including it after `doctor_id` allows the database to efficiently scan the required date range for that doctor.
+
+### **Why order is important in a composite index:**
+`appointment_date` has a wider range of values compared to `doctor_id`. By placing `doctor_id` first, the index filters records by doctor before applying the range condition on `appointment_date`, which significantly reduces the number of rows scanned and improves performance.
+
